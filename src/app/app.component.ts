@@ -6,8 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { StorageProvider } from '../providers/storage/storage';  
 import { Storage } from '@ionic/storage';    
-import { LoginPage } from '../pages/login/login';
-import { VendasPage } from '../pages/modulo-vendas/vendas/vendas'; 
+import { LoginPage } from '../pages/login/login'; 
+import { AuthService } from '../services/auth.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +24,8 @@ export class MyApp {
     splashScreen: SplashScreen,
     //private screenOrientation: ScreenOrientation,
     public storageProvider: StorageProvider,
-    public storage: Storage
+    public storage: Storage,
+    private auth: AuthService
   ) {
 
     platform.ready().then(() => {

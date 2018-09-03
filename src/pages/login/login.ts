@@ -8,6 +8,7 @@ import { VendasPage } from '../modulo-vendas/vendas/vendas';
  
 import { RecuperarDadosProvider } from '../../providers/recuperar-dados/recuperar-dados';
 import { HttpClient, HttpHeaders } from '@angular/common/http';  
+import { AuthService } from '../../services/auth.service';
 
 import { SERVIDOR } from "../../util"; 
 
@@ -32,7 +33,8 @@ export class LoginPage {
     public alert: AlertController,
     public recuperarDados: RecuperarDadosProvider,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController 
+    public loadingCtrl: LoadingController, 
+		private auth: AuthService
   ) {
   }
 
@@ -158,8 +160,12 @@ export class LoginPage {
   } 
  
   loginGoogle(){
-    this.navCtrl.push(VendasPage);
-  }
+        this.auth.signInWithGoogle()
+      .then(
+        () => this.navCtrl.setRoot(VendasPage),
+        error => console.log(error.message)
+      );
+  } 
 
   ionViewDidLoad() {
     this.storageProvider.retornaLogin()

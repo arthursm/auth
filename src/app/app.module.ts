@@ -34,7 +34,11 @@ import { InformacoesPage } from '../pages/modulo-vendas/clientes/venda/informaco
 import { IncluirPedidoPage } from '../pages/modulo-vendas/clientes/venda/pedido/incluir-pedido/incluir-pedido';
 import { ItensPage } from '../pages/modulo-vendas/clientes/venda/pedido/itens/itens';
 
- 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from '../config';
+import { AuthService } from '../services/auth.service';
+
 @NgModule({ 
   declarations: [
     MyApp, 
@@ -59,14 +63,13 @@ import { ItensPage } from '../pages/modulo-vendas/clientes/venda/pedido/itens/it
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp), 
+    AngularFireModule.initializeApp(firebaseConfig.fire),
     CustomFormsModule,
     FormsModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
     BrMaskerModule,
-    HttpModule,
-
-
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -97,6 +100,8 @@ import { ItensPage } from '../pages/modulo-vendas/clientes/venda/pedido/itens/it
     StorageProvider, 
     HttpClient, 
     RecuperarDadosProvider,
+    AngularFireAuth,
+    AuthService
   ]
 })
 export class AppModule { }
